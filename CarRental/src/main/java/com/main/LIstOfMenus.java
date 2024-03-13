@@ -9,27 +9,30 @@ import  com.CRUDoperation.*;
 import com.User.Customer;
 import com.User.Guest;
 public class LIstOfMenus {
-    public static void showMenu1(){        
+    public static void showDashboard(){        
         int choice=0;
         while (true) {
         	Scanner sc = new Scanner(System.in);
-        	System.out.println("------------------------------");
-        	System.out.println("           DashBoard          ");
-        	System.out.println("------------------------------");
-            System.out.println("1. Login");
-            System.out.println("2. Register");
-            System.out.println("3. Login as Guest");
-            System.out.println("4. About");
-            System.out.println("5. Exit");
-            System.out.println("------------------------------");
-            System.out.println("");
-            System.out.print("Enter your choice: ");
+        	System.out.println("------------------------------\n" +
+        	                   "           DashBoard          \n" +
+        	                   "------------------------------\n" +
+        	                   "Choice    Action\n" +
+        	                   "                              \n" +
+        	                   "  1.      Login\n" +
+        	                   "  2.      Register\n" +
+        	                   "  3.      Login as Guest\n" +
+        	                   "  4.      About\n" +
+        	                   "  5.      Exit\n" +
+        	                   "------------------------------\n" +
+        	                   "\n" +
+        	                   "Enter your choice: ");
+
             try {
             	choice = sc.nextInt(); 
             }
             catch(Exception e) {
             	System.out.println("Your Provided Charecter which is not allowed please Re-Enter");
-            	showMenu1();
+            	showDashboard();
             }
             switch (choice) {
                 case 1:
@@ -70,22 +73,23 @@ public class LIstOfMenus {
     		int choice1=0;
     	
     		while(true) {
-    			Scanner sc=new Scanner(System.in);
-    			System.out.println();
-    			System.out.println("------------------------------");
-    			System.out.println("    Welcome To Admin Menu     ");
-    			System.out.println("------------------------------");
-        		System.out.println("1. Add Customer");
-        		System.out.println("2. Remove Customer");
-        		System.out.println("3. Add Car");
-        		System.out.println("4. remove Car");
-        		System.out.println("5. Update car");
-        		System.out.println("6. view all bookings");
-        		System.out.println("7. Previous");
-        		System.out.println("8. exit");
-        		System.out.println("------------------------------");
-        		System.out.println("");
-        		System.out.print("Enter your choice: ");
+    			Scanner sc = new Scanner(System.in);
+    			System.out.println("\n------------------------------" +
+    			                   "\n    Welcome To Admin Menu     " +
+    			                   "\n------------------------------" +
+    			                   "\nChoice  Action"+
+    			                   "\n 1.    Add Customer" +
+    			                   "\n 2.    Remove Customer" +
+    			                   "\n 3.    Add Car" +
+    			                   "\n 4.    Remove Car" +
+    			                   "\n 5.    Update Car" +
+    			                   "\n 6.    View All Bookings" +
+    			                   "\n 7.    Previous" +
+    			                   "\n 8.    Exit" +
+    			                   "\n------------------------------" +
+    			                   "\n" +
+    			                   "Enter your choice: ");
+
         		try {
                 	choice1 = sc.nextInt(); 
                 }
@@ -113,7 +117,7 @@ public class LIstOfMenus {
     				booking.showAllBooking();
     				break;
     			case 7:
-    				showMenu1();
+    				showDashboard();
     				break;
     			case 8:
     				System.out.println("Thank You ! Come Again :)");
@@ -127,21 +131,22 @@ public class LIstOfMenus {
     public static void showMenu3() {
     	int choice2=0;
     	while(true) {
-    		Scanner sc=new Scanner(System.in);
-    		System.out.println();
-    		System.out.println("------------------------------");
-    		System.out.println("   Welcome To Customer Menu   ");
-    		System.out.println("------------------------------");
-    		System.out.println("1. Profile");
-    		System.out.println("2. Search");
-    		System.out.println("3. Inbox (Notification)");
-    		System.out.println("4. History");
-    		System.out.println("5. cancellation");
-    		System.out.println("6. Prevoius");
-    		System.out.println("7. exit");
-    		System.out.println("------------------------------");
-    		System.out.println("");
-    		System.out.print("Enter your choice: ");
+    		Scanner sc = new Scanner(System.in);
+    		System.out.println("\n------------------------------" +
+    		                   "\n   Welcome To Customer Menu   " +
+    		                   "\n------------------------------" +
+    		                   "\n Choice  Action" +
+    		                   "\n 1.    Profile" +
+    		                   "\n 2.    Search" +
+    		                   "\n 3.    Inbox (Notification)" +
+    		                   "\n 4.    History" +
+    		                   "\n 5.    Cancellation" +
+    		                   "\n 6.    Previous" +
+    		                   "\n 7.    Exit" +
+    		                   "\n------------------------------" +
+    		                   "\n" +
+    		                   "Enter your choice: ");
+
     		try {
             	choice2 = sc.nextInt(); 
             }
@@ -166,7 +171,7 @@ public class LIstOfMenus {
     			Refund.doRefund();
     			break;
     		case 6:
-    			showMenu1();
+    			showDashboard();
     			break;
     		case 7:
     			System.out.println("Thank You ! Come Again :)");
@@ -179,19 +184,22 @@ public class LIstOfMenus {
     Search search =new Search();
     public static void showMenu4() {
     	while(true) {
-    		System.out.println("-----------------------");
-    		System.out.println("Search based on ???");
-    		System.out.println("-----------------------");
-        	System.out.println("1. All");
-        	System.out.println("2. Model");
-        	System.out.println("3. Location");
-        	System.out.println("4. Year");
-        	System.out.println("5. Previous");
-        	System.out.println("6. Exit");
-    		System.out.println("-----------------------");
-        	System.out.println("");
-        	System.out.print("Enter Your Choice : ");
-        	Scanner sc=new Scanner(System.in);
+    		Scanner sc = new Scanner(System.in);
+    		System.out.println("-----------------------" +
+    		                   "\nSearch based on ???" +
+    		                   "\n-----------------------" +
+    		                   "\n Choice  Action" +
+    		                   "\n 1.    All" +
+    		                   "\n 2.    Model" +
+    		                   "\n 3.    Location" +
+    		                   "\n 4.    Year" +
+    		                   "\n 5.    Previous" +
+    		                   "\n 6.    Exit" +
+    		                   "\n-----------------------" +
+    		                   "\n" +
+    		                   "Enter Your Choice : ");
+
+        	
         	int choice3=0;
         	try {
             	choice3 = sc.nextInt(); 
@@ -233,16 +241,19 @@ public class LIstOfMenus {
     	Customer customer = new Customer();
     	Scanner sc=new Scanner(System.in);
     	while(true) {
-    		System.out.println("------------------------------");
-    		System.out.println("      Customer Management     ");
-    		System.out.println("------------------------------");
-        	System.out.println("1. Add new Customer");
-    		System.out.println("2. Activate Existing Customer ");
-    		System.out.println("3. previous");
-    		System.out.println("4. Exit");
-    		System.out.println("------------------------------");
-    		System.out.println();
-    		System.out.print("Enter your Choice : ");
+    		
+    		System.out.println("------------------------------" +
+    		                   "\n      Customer Management     " +
+    		                   "\n------------------------------" +
+    		                   "\n Choice  Action" +
+    		                   "\n 1.    Add new Customer" +
+    		                   "\n 2.    Activate Existing Customer" +
+    		                   "\n 3.    Previous" +
+    		                   "\n 4.    Exit" +
+    		                   "\n------------------------------" +
+    		                   "\n" +
+    		                   "Enter your Choice : ");
+
     		int choice=0;
     		try {
             	choice = sc.nextInt(); 

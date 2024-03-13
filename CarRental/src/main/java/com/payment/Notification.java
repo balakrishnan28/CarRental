@@ -70,14 +70,15 @@ public class Notification {
 	        Scanner sc = new Scanner(System.in);
 	        System.out.print("Enter Password To Update: ");
 	        String password = sc.next();
-	        final String FETCH_CUSTOMER_DETAILS_QUERY = "SELECT customerid AS customerID FROM CAR.customers WHERE accountid = ( SELECT accountid FROM CAR.accounts WHERE passwords = ?)";
+	        final String FETCH_CUSTOMER_DETAILS_QUERY = "SELECT customerid AS customerID FROM CAR.customers WHERE accountid = ( SELECT accountid FROM CAR.accounts WHERE passwords = ? )";
 	        
 	        PreparedStatement fetchStatement = con.prepareStatement(FETCH_CUSTOMER_DETAILS_QUERY);
 	        fetchStatement.setString(1, password);
 	        ResultSet customerResult = fetchStatement.executeQuery();
 	        int customerID = 0;
-	        if (customerResult.next()) {
+	        while (customerResult.next()) {
 	        	customerID = customerResult.getInt("customerID");
+	        	
 	        }
 	        customerResult.close();
 	        fetchStatement.close();

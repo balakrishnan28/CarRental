@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Scanner;
 
 import com.Validation.InputValidation;
@@ -22,6 +24,7 @@ public class Search implements Searchable{
 	public void basedOnModel() {
 	    Scanner sc = new Scanner(System.in);
 	    LinkedHashSet<String> hs = new LinkedHashSet<>();
+	    List<Integer> carIDs = new ArrayList<>();
 
 	    try {
 	        final String QUERY = "SELECT Model FROM CAR.Cars GROUP BY Model";

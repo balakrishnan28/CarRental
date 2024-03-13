@@ -1,32 +1,38 @@
 package com.main;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Layout {
 	public static void IntroLayout() {
-		System.out.println("------------------------------------------------------------------");
-		System.out.println("******************************************************************");
-		System.out.println("|                                                                |");
-		System.out.println("|                             LETS DRIVE                         |");
-		System.out.println("|                   (CAR RENTAL MANAGEMENT SYSTEM)               |");
-		System.out.println("|                                                                |");
-		System.out.println("******************************************************************");
-		System.out.println("------------------------------------------------------------------");
+		String filePath = "C://Users/lenovo/git/repository//CarRental//src//main/java/com/main/IntroLayout"; // Replace with the actual path to your file
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	public static void carLayout() {
-    	System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+    	System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
     	System.out.println("CarID\tbrand\tmodel\tregNumber\tseatCount\tmileage \t parkingID\tyear\trentalRate/Day\tavailability");
-    	System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+    	System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
     }
 	public static void tableBottomLayout() {
-		System.out.println("----------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
 	}
 	public static void invoiceBottomLayout() {
 		System.out.println("-----------------------------------");
 	}
 	public static void BookingLayout() {
     	System.out.println("----------------------------------------------------------------------------------------------------------------------------");
-    	System.out.println("BookingID\tBookingDate\tCustomerID\tAdminID \tCarID\t DeliverDate\tReturnDate \t BookingStatus");
+    	System.out.println("BookingID\tBookingDate\t    CustomerName\tCarID\t DeliverDate\tReturnDate \t BookingStatus");
     	System.out.println("----------------------------------------------------------------------------------------------------------------------------");
     }
 	public static void customerLayout() {
@@ -91,11 +97,11 @@ public class Layout {
         Scanner sc=new Scanner(System.in);
         int choice = sc.nextInt();
         if(choice == 1) {
-        	LIstOfMenus.showMenu1();
+        	LIstOfMenus.showDashboard();
         }
         else {
         	System.out.println("invalid responce forced to Main Page");
-        	LIstOfMenus.showMenu1();
+        	LIstOfMenus.showDashboard();
         }
     }
 

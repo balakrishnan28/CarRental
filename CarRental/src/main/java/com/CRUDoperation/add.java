@@ -167,7 +167,7 @@ public static void addCustomer() {
                 System.out.println("Enter 1 To Go Previous");
                 int choice1 = sc.nextInt();
                 if(choice1==1) {
-                	LIstOfMenus.showMenu1();
+                	LIstOfMenus.showDashboard();
                 }
                 else {
                 	System.out.println("Invalid Choice");

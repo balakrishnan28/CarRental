@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
 import com.main.LIstOfMenus;
 import com.main.dbConnection;
 
@@ -23,9 +22,11 @@ public class Login {
         System.out.println("------------------");
         System.out.println("     Login as     ");
         System.out.println("------------------");
-        System.out.println("1. Admin");
-        System.out.println("2. Customer");
-        System.out.println("3. Exit");
+        System.out.println("Choice   Action   ");
+        System.out.println();
+        System.out.println("  1.     Admin");
+        System.out.println("  2.     Customer");
+        System.out.println("  3.     Exit");
         System.out.println("------------------");
         System.out.println("");
         System.out.print("Enter your Choice : ");
@@ -38,7 +39,7 @@ public class Login {
             	role="customer";
             }
             else {
-            	LIstOfMenus.showMenu1();
+            	LIstOfMenus.showDashboard();
             }
         }
         catch(Exception e) {

@@ -44,12 +44,37 @@ public class Update {
 	}
 	public static void doUpdate() {
 		try {
-			Guest.showMenu();
+			
 			Scanner sc=new Scanner(System.in);
-			System.out.print("Enter CarID To Update : ");
-			int carID= InputValidation.checkForInteger(sc); 
-			final String FETCH_CAR_DETAILS_QUERY = "SELECT * FROM CAR.Cars WHERE CarID = ?";
+			 
+			final String FETCH_CAR_DETAILS_QUERY = "SELECT * FROM CAR.Cars WHERE CarID = ? ";
+			String All = "SELECT * FROM CAR.CARS ORDER BY CARID";
 			Connection con = dbConnection.doDBConnection();
+			PreparedStatement Statement = con.prepareStatement(All);
+			ResultSet Result = Statement.executeQuery();
+			 Layout.carLayout();
+			while (Result.next()) {
+			     // Assuming this method displays the car details layout
+
+			    int carsID = Result.getInt("CarID");
+			    String brand = Result.getString("Brand");
+			    String model = Result.getString("Model");
+			    String regNumber = Result.getString("RegNumber");
+			    int seatCount = Result.getInt("SeatCount");
+			    int mileage = Result.getInt("Mileage");
+			    int year = Result.getInt("Year");
+			    int parkingID = Result.getInt("ParkingID");
+			    double rentalRate = Result.getDouble("RentalRate");
+			    String availability = Result.getString("Availability");
+
+			    // Display existing car details
+			    System.out.println(carsID + "\t" + brand + "\t" + model + "\t" + regNumber + "\t     " + seatCount
+			            + "\t         " + mileage + "\t             " + parkingID + "\t        " + year + "\t  "
+			            + rentalRate + "\t    " + availability);
+			}
+			Layout.tableBottomLayout();
+			System.out.print("Enter CarID To Update : ");
+			int carID= InputValidation.checkForInteger(sc);
 			PreparedStatement fetchStatement = con.prepareStatement(FETCH_CAR_DETAILS_QUERY);
 			fetchStatement.setInt(1, carID);
 			ResultSet carResult = fetchStatement.executeQuery();
@@ -74,84 +99,61 @@ public class Update {
 			            + rentalRate + "\t    " + availability);
 			    Layout.tableBottomLayout();
 			    
-			    final String UPDATE_CAR_DETAILS_QUERY = "UPDATE CAR.Cars SET Brand = ?, Model = ?, RegNumber = ?, SeatCount = ?, Mileage = ?, ParkingID = ?, Year = ?, RentalRate = ? WHERE CarID = ?";
+			    final String UPDATE_CAR_DETAILS_QUERY = "UPDATE CAR.Cars SET SeatCount = ?, Mileage = ?, ParkingID = ?, RentalRate = ?, Availability = ? WHERE CarID = ?";
 			    PreparedStatement updateStatement = con.prepareStatement(UPDATE_CAR_DETAILS_QUERY);
 
 			    System.out.println("");
 
-			    System.out.print("Enter new Brand OR (Enter 'skip' to keep existing): ");
-			    String newBrand = sc.next();
-			    if (!newBrand.equalsIgnoreCase("skip")) {
-			    	updateStatement.setString(1, newBrand);
-			    }
-			    else {
-			    	updateStatement.setString(1, brand);
-			    }
-
-			    System.out.print("Enter new Model OR (Enter 'skip' to keep existing): ");
-			    String newModel = sc.next();
-			    if (!newModel.equalsIgnoreCase("skip")) {
-			    	updateStatement.setString(2, newModel);
-			    }
-			    else {
-			    	updateStatement.setString(2, model);
-			    }
 			    
-			    System.out.print("Enter new RegNumber OR (Enter 'skip' to keep existing): ");
-			    String newRegNumber = sc.next();
-			    if (!newRegNumber.equalsIgnoreCase("skip")) {
-			        updateStatement.setString(3, newRegNumber);
-			    }
-			    else {
-			    	updateStatement.setString(3, regNumber);
-			    }
 			    
 			    System.out.print("Enter new SeatCount OR (Enter '0' to keep existing): ");
 			    int newSeatCount =  InputValidation.checkForInteger(sc); 
 			    if (newSeatCount > 0) {
-			        updateStatement.setInt(4, newSeatCount);
+			        updateStatement.setInt(1, newSeatCount);
 			    }
 			    else {
-			    	updateStatement.setInt(4, seatCount);
+			    	updateStatement.setInt(1, seatCount);
 			    }
 
 			    System.out.print("Enter new Mileage OR (Enter '0' to keep existing): ");
 			    int newMileage =  InputValidation.checkForInteger(sc); 
 			    if (newMileage > 0) {
-			        updateStatement.setInt(5, newMileage);
+			        updateStatement.setInt(2, newMileage);
 			    }
 			    else {
-			    	updateStatement.setInt(5, mileage);
+			    	updateStatement.setInt(2, mileage);
 			    }
 
 			    
 			    System.out.print("Enter new ParkingID OR (Enter '0' to keep existing): ");
 			    int newParkingID =  InputValidation.checkForInteger(sc); 
 			    if (newParkingID > 0) {
-			        updateStatement.setInt(6, newParkingID);
+			        updateStatement.setInt(3, newParkingID);
 			    }
 			    else {
-			    	updateStatement.setInt(6, parkingID);
+			    	updateStatement.setInt(3, parkingID);
 			    }
 			    
-			    System.out.print("Enter new Year OR (Enter '0' to keep existing): ");
-			    int newYear =  InputValidation.checkForInteger(sc); 
-			    if (newYear > 0) {
-			        updateStatement.setInt(7, newYear);
-			    }
-			    else {
-			    	updateStatement.setInt(7, year);
-			    }
 			    
 			    System.out.print("Enter new RentalRate OR (Enter '0' to keep existing): ");
 			    double newRentalRate =  InputValidation.checkForDouble(sc); 
 			    if (newRentalRate > 0) {
-			        updateStatement.setDouble(8, newRentalRate);
+			        updateStatement.setDouble(4, newRentalRate);
 			    }
 			    else {
-			    	updateStatement.setDouble(8, rentalRate);
+			    	updateStatement.setDouble(4, rentalRate);
 			    }
-			    updateStatement.setInt(9, carID);
+			    
+			    System.out.print("Enter new Availability OR (Enter 'skip' to keep existing): ");
+			    String NewAvailability =  sc.next();
+			    if (!NewAvailability.equals("skip")) {
+			        updateStatement.setString(5, availability);
+			    }
+			    else {
+			    	updateStatement.setString(5, NewAvailability);
+			    }
+			    
+			    updateStatement.setInt(6, carID);
 			    int updateResult = updateStatement.executeUpdate();
 
 			    if (updateResult > 0) {

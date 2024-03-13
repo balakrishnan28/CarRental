@@ -212,16 +212,15 @@ public static void showAllBooking(){
 			Connection con = dbConnection.doDBConnection();
 			Scanner sc=new Scanner(System.in);
 
-			final String showAll = "SELECT * FROM CAR.Booking ORDER BY BOOKINGDATE DESC	";
+			final String showAll = "SELECT BOOKING.*, CONCAT(CONCAT(CUSTOMERS.FIRSTNAME, ' '), CUSTOMERS.LASTNAME) AS customerName FROM CAR.BOOKING LEFT JOIN CAR.CUSTOMERS ON BOOKING.CUSTOMERID = CUSTOMERS.CUSTOMERID";
 			PreparedStatement showAllstat = con.prepareStatement(showAll);
 			
 			ResultSet result = showAllstat.executeQuery();
             Layout.BookingLayout();
             while (result.next()) {
             	int bookingID = result.getInt("BookingID");
-            	int CustomerID = result.getInt("CustomerID");
+            	String customerName = result.getString("customerName");
             	int carID = result.getInt("CarID");  // Assuming there's a CarID column in the Booking table
-            	int adminID = result.getInt("AdminID");
             	String fullbookingDate = result.getString("BookingDate");
             	String fulldeliverDate = result.getString("DeliverDate");
             	String fullreturnDate = result.getString("ReturnDate");
@@ -232,7 +231,7 @@ public static void showAllBooking(){
                 String DeliverdDate = fulldeliverDate.substring(0, 10);
                 String ReturnDate = fullreturnDate.substring(0, 10);
 
-                System.out.println(bookingID + "\t         " + BookingDate + "\t    " + CustomerID + "\t          " + adminID + "\t         " + carID + "\t  " + DeliverdDate + "\t" + ReturnDate +"\t   "+ bookingStatus);
+                System.out.println(bookingID + "\t         " + BookingDate + "\t    " + customerName + "\t         " + carID + "\t  " + DeliverdDate + "\t" + ReturnDate +"\t   "+ bookingStatus);
             }
             Layout.tableBottomLayout();
             System.out.println();
